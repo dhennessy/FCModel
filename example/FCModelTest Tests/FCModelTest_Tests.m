@@ -66,6 +66,17 @@
     XCTAssertTrue(entity2 != entity1);
 }
 
+- (void)testDeletedInstancesFlushed
+{
+    SimpleModel *entity1 = [SimpleModel instanceWithPrimaryKey:@"a"];
+    [entity1 save];
+    [entity1 delete];
+    
+    SimpleModel *entity2 = [SimpleModel instanceWithPrimaryKey:@"a"];
+    XCTAssertTrue(entity2 != entity1);
+    
+}
+
 #pragma mark - Helper methods
 
 - (void)openDatabase
